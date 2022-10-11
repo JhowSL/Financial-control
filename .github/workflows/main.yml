@@ -1,0 +1,42 @@
+name: Deploy Financial Control
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run 
+        run: echo Build
+
+        
+  depoloy-dev:
+    runs-on: ubuntu-latest
+    environment:
+        name: dev
+        url: 'https://github.com/JhowSL/Financial-control'
+    needs: build
+    steps:
+      - name: Run 
+        run: echo Deploy DEV
+        
+  depoloy-hmg:
+    runs-on: ubuntu-latest
+    environment:
+        name: hmg
+        url: 'https://github.com/JhowSL/Financial-control'
+    needs: depoloy-dev
+    steps:
+     - name: Run 
+       run: echo Deploy Homolagação
+       
+  depoloy-prd:
+    runs-on: ubuntu-latest
+    environment:
+        name: prd
+        url: 'https://github.com/JhowSL/Financial-control'
+    needs: depoloy-hmg
+    steps:
+     - name: Run 
+       run: echo Deplpy Pré-Produção
+       
